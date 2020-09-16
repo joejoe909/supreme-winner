@@ -1,14 +1,14 @@
 {
   "development": {
     "username": "root",
-    "password": "enter101",
-    "database": "passport_demo",
+    "password": "root",
+    "database": "mtg_twitter",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
-    "password": "enter101",
+    "password": "root",
     "database": "database_test",
     "host": "127.0.0.1",
     "dialect": "mysql"
