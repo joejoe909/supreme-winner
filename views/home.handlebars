@@ -1,0 +1,30 @@
+<h1 style="text-align: center;">Magic The Gathering Communion</h1>
+
+<h2 style="text-align: center;">Some Magic related stuff</h2>
+
+<h2>Dream Burgers!!!!</h2>
+<ul>
+    {{#each burger}}
+    {{#unless devoured}}
+    {{>burgers/burger-block devoured=false}}
+    {{/unless}}
+    {{/each}}
+</ul>
+
+<h2 class>Burgers That Have Been Devoured!!!!</h2>
+
+<ul class>
+    {{#each burger}}
+    {{#if devoured}}
+    {{>burgers/burger-block devoured=true}}
+    {{/if}}
+    {{/each}}
+</ul>
+
+<div class="center">
+    <form>
+        <label for="burgerName">Type your Burger below!</label><br>
+        <textarea id="bIn" name="bIn" rows="4" cols="50"></textarea><br>
+        <input type="submit" value="Submit" id="submit">
+    </form>
+</div>
