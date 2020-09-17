@@ -2,3 +2,46 @@ form.signup,
 form.login {
   margin-top: 50px;
 }
+
+.clearfix::after {
+  content: " ";
+  display: block;
+  clear: both;
+}
+
+
+.imgLimit{
+    max-width:10%;
+    max-height:10%;
+}
+
+/*sidebar stuff*/
+.sidenav {
+  height: auto;
+  width: 250px;
+  position: sticky;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+}
+
+main {
+  float: center;
+}
+
+
+
+aside{
+  float: left;
+}
