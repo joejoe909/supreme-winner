@@ -1,30 +1,54 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header dark">
+      <a class="navbar-brand" href="/logout">
+        Logout
+      </a>
+    </div>
+  </div>
+</nav>
 <h1 style="text-align: center;">Magic The Gathering Communion</h1>
 
 <h2 style="text-align: center;">Some Magic related stuff</h2>
 
-<h2>Dream Burgers!!!!</h2>
-<ul>
-    {{#each burger}}
-    {{#unless devoured}}
-    {{>burgers/burger-block devoured=false}}
-    {{/unless}}
-    {{/each}}
-</ul>
+<div class = "clearfix">
+<aside>
+  <div class="sidenav">
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#clients">Clients</a>
+    <a href="#contact">Contact</a>
+  </div>
 
-<h2 class>Burgers That Have Been Devoured!!!!</h2>
+</aside>
 
-<ul class>
-    {{#each burger}}
-    {{#if devoured}}
-    {{>burgers/burger-block devoured=true}}
-    {{/if}}
-    {{/each}}
-</ul>
 
-<div class="center">
-    <form>
-        <label for="burgerName">Type your Burger below!</label><br>
-        <textarea id="bIn" name="bIn" rows="4" cols="50"></textarea><br>
-        <input type="submit" value="Submit" id="submit">
-    </form>
+
+<main>
+  <div class="container">
+
+
+
+    <div class="row">
+      <div class="col-12">
+
+        {{> addNewPost}}
+
+      </div>
+
+      <ul class="list-group">
+        {{> post}}
+        {{> post}}
+        {{> post}}
+        {{> post}}
+        {{> post}}
+      </ul>
+
+
+    </div>
+
+
+
+  </div>
+</main>
 </div>
