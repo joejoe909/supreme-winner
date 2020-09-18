@@ -1,6 +1,9 @@
 module.exports = function (sequelize, DataTypes) {
     let Post = sequelize.define("mtgPosts", {         //table name
-        hasCard: false,
+        hasCard:{
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
+        }, 
         usrTxt: {                                    //text a user can post 
             type: DataTypes.STRING,
             allowNull: false,
@@ -33,12 +36,14 @@ module.exports = function (sequelize, DataTypes) {
             }
         },
     });
+
     Post.associate = function (models) {
-        Post.belongsTo(models.user, {  //this is still in question
+        Post.belongsTo(models.User, {  //this is still in question
             foregnKey: {
                 allowNull: false
             }
         });
     };
+
     return Post;
 }
