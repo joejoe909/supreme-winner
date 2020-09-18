@@ -1,68 +1,58 @@
 <div style="background-image: url('./img/cool-background.png');">
-    
-    <nav class="navbar navbar-light bg-light">
-      <a class="navbar-brand" href="#"></a>
-      <div class="row">
-        <div class="container">
-          <div class="row">
-            <div class="col-sm">
-              Magic The Gabbing
-            </div>
-            <div class="col-sm">
-              Login
-            </div>
-            <div class="col-sm">
-              Sign up
-            </div>
+
+  <nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">
+      <h1 style="color:white;">
+        Magic The Gabbering
+      </h1>
+    </a>
+    <div class="row">
+      <div class="container">
+        <div class="row">
+          <div class="col-md left">
+          </div>
+          <div class="col-sm align-right">
+            <a class="navbar-brand" href="/logout">
+              <button type="button" class="btn btn-dark">Logout</button>
+            </a>
           </div>
         </div>
+      </div>
   </nav>
   <!-- 
     <div class="jumbotron jumbotron-fluid"> -->
   <div class="container text-center ">
-  <!-- <div class="float-right"> -->
+    <!-- <div class="float-right"> -->
     <img src=./img/bannermtg.jpg class="img-fluid" alt="mtg banner">
     <!-- </div> -->
-    </div>
-
-<div class = "clearfix">
-<aside>
-  <div class="sidenav">
-    <a href="#about">About</a>
-    <a href="#services">Services</a>
-    <a href="#clients">Clients</a>
-    <a href="#contact">Contact</a>
   </div>
 
-</aside>
+  <div class="clearfix">
+    <main>
+      <div class="container">
 
 
 
-<main>
-  <div class="container">
+        <div class="row">
+          <div class="col-12">
+
+            {{> addNewPost}}
+
+          </div>
+
+          <ul class="list-group">
+            {{> post}}
+            {{> post}}
+            {{> post}}
+            {{> post}}
+            {{> post}}
+          </ul>
 
 
+        </div>
 
-    <div class="row">
-      <div class="col-12">
 
-        {{> addNewPost}}
 
       </div>
-
-      <ul class="list-group">
-        {{> post}}
-        {{> post}}
-        {{> post}}
-        {{> post}}
-        {{> post}}
-      </ul>
-
-
-    </div>
-
-
-
+    </main>
   </div>
-</main>
-</div>
