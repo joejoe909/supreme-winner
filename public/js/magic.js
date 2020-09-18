@@ -1,9 +1,5 @@
 $(document).ready(function () {
 
-    
-
-
-
     $("#mkPost").on("click", function () {
         console.log("mkpost click");
 
