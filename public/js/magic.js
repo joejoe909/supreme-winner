@@ -1,8 +1,10 @@
 $(document).ready(function () {
+
     let cardName = 'Sol Ring';
     // send an AJAX POST-request with jQuery
    
   
+
     $("#mkPost").on("click", function () {
         console.log("mkpost click");
 
@@ -18,6 +20,6 @@ $(document).ready(function () {
 
         });
     });
-    
    
 });
+
