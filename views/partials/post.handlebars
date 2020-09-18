@@ -4,17 +4,27 @@
   <div class="card-body">
     <h5 class="card-title">Card title</h5>
     <p class="card-text"> random card text for mtg</p>
-    <div id="comment-area"> </div>
-   {{!-- <div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Dropdown button
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="#">{{comment}}</a>
-    <a class="dropdown-item" >Another action</a>
-    <a class="dropdown-item" >Something else here</a>
-  </div>
-</div> --}}
-    {{!-- <a class="btn btn-primary">comments</a> --}}
+    <div class="container">
+
+      <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+          <p class="cool-font">Name</p>
+          <input class="form-control" type="text" id="author" placeholder="Enter Your Name">
+          <br>
+          <p class="cool-font">Comment</p>
+          <textarea class="form-control" rows="3" id="comment-box" placeholder="Enter Comment Here!"></textarea>
+          <button id="comment-submit" class="btn btn-lg pull-right">Submit!</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+          <h2>Chirps</h2>
+          <hr>
+          <div id="comment-area"></div>
+        </div>
+      </div>
+
+    </div>
   </div>
 </div>

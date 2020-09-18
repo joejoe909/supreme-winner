@@ -7,7 +7,7 @@ $.get("/api/all", function(data) {
         var row = $("<div>");
         row.addClass("com-list");
   
-        row.append("<p>" + data[i].author + " chirped.. </p>");
+        row.append("<p>" + data[i].author + " commented.. </p>");
         row.append("<p>" + data[i].body + "</p>");
         row.append("<p>At " + moment(data[i].created_at).format("h:mma on dddd") + "</p>");
   
@@ -40,7 +40,7 @@ $.get("/api/all", function(data) {
         var row = $("<div>");
         row.addClass("com-list");
   
-        row.append("<p>" + newComment.author + " chirped: </p>");
+        row.append("<p>" + newComment.author + " comments: </p>");
         row.append("<p>" + newComment.body + "</p>");
         row.append("<p>At " + moment(newComment.created_at).format("h:mma on dddd") + "</p>");
   
