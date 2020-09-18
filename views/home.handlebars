@@ -1,6 +1,6 @@
- <nav class="navbar navbar-default">
+<nav class="navbar navbar-default">
   <div class="container-fluid">
-    <div class="navbar-header">
+    <div class="navbar-header dark">
       <a class="navbar-brand" href="/logout">
         Logout
       </a>
@@ -11,10 +11,44 @@
 
 <h2 style="text-align: center;">Some Magic related stuff</h2>
 
+<div class = "clearfix">
+<aside>
+  <div class="sidenav">
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#clients">Clients</a>
+    <a href="#contact">Contact</a>
+  </div>
 
-<ol>
-    {{!-- {{#each post}} --}}
-    {{> post}}
-    {{!-- {{/each}} --}}
-</ol>
+</aside>
 
+
+
+<main>
+  <div class="container">
+
+
+
+    <div class="row">
+      <div class="col-12">
+
+        {{> addNewPost}}
+
+      </div>
+
+      <ul class="list-group">
+        {{> post}}
+        {{> post}}
+        {{> post}}
+        {{> post}}
+        {{> post}}
+      </ul>
+
+
+    </div>
+
+
+
+  </div>
+</main>
+</div>
