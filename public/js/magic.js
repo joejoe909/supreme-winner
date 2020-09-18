@@ -1,5 +1,4 @@
 $(document).ready(function () {
-
     let cardName = 'Sol Ring';
     // send an AJAX POST-request with jQuery
    
@@ -17,7 +16,7 @@ $(document).ready(function () {
         .then(function (data) {
          // log the data we found
          console.log(data);
-
+         $("#postBx").val(data);
         });
     });
    
