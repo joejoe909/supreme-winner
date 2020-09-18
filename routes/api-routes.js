@@ -56,8 +56,8 @@ module.exports = function(app) {
     if (req.params.cardName) {
       let cn = req.params.cardName
       mtg.card.where({ name: cn }).then((results) => {
-          console.log(results);
-          res.json(results);
+          console.log(results[0]);
+          res.json(results[0]);
         })
       
     } 
