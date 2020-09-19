@@ -27,7 +27,7 @@ $.get("/api/all", function(data) {
     var newComment = {
       author: $("#author").val().trim(),
       body: $("#comment-box").val().trim(),
-      created_at: moment().format("YYYY-MM-DD HH:mm:ss")
+      // created_at: moment().format("YYYY-MM-DD HH:mm:ss")
     };
   
     console.log(newComment);

@@ -34,7 +34,7 @@ module.exports = function(app) {
         author: req.body.author,
         body: req.body.body,
         created_at: req.body.created_at
-      }).then(function(results) {
+      }).then(function(res) {
         // `results` here would be the newly created chirp
         res.end();
       });
