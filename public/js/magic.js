@@ -2,13 +2,25 @@ $(document).ready(function () {
     let hasCard = false;
     let mtgCard = Object.create(card);
     
+    function addHTag(item, property){
+        let insert = $("<h4>" + property + item + "</h4><br>");
+       if(item !== undefined) $("#postHldr").append(insert);
+        
+    }
+
+
     function addtopostcard(mtgPost){
         console.log("addtopostcard");
         console.log(mtgPost);
-        //put in id="postHldr"
-        for(i = 0; i < mtgPost; i++){
-            console.log(mtgPost[i]);
-        }
+        $("#postHldr").html(""); 
+        let imgCrd = $("<img>").attr('src', mtgPost.imageUrl);
+        $("#postHldr").append(imgCrd);
+        addHTag(mtgPost.name, "Name:");
+        addHTag(mtgPost.type, "Type:");
+        addHTag(mtgPost.cmc, "CMC:");
+        addHTag(mtgPost.power, "Power:");
+        addHTag(mtgPost.toughness, "Toughness:");
+        addHTag(mtgPost.loyalty, "Loyalty:")
     };
     
      
