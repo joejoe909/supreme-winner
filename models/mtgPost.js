@@ -12,30 +12,42 @@ module.exports = function (sequelize, DataTypes) {
                 len: [1]
             }
         },
-        cardName: {                                //card related data 
+        name: {                                //card related data 
             type: DataTypes.STRING,
             validate: {
                 hasCard: true
             }
         },
-        cardType: {
+        type: {
             type: DataTypes.STRING,
             validate: {
                 hasCard: true
             }
         },
-        cardCMC: {
-            type: DataTypes.INTEGER,
-            validate: {
-                hasCard: true
-            }
-        },
-        cardTypeSel: {
+        cmc: {
             type: DataTypes.STRING,
             validate: {
                 hasCard: true
             }
         },
+        power: {
+            type: DataTypes.STRING,
+            validate: {
+                hasCard: true
+            }
+        },
+        toughness: {
+            type: DataTypes.STRING,
+            validate: {
+                hasCard: true
+            }
+        },
+        loyalty: {
+            type: DataTypes.STRING,
+            validate: {
+                hasCard: true
+            }
+        }
     });
 
     Post.associate = function (models) {

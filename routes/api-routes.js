@@ -52,6 +52,7 @@ module.exports = function(app) {
     }
   });
 
+    //Route for making a MTG request this will 
   app.get("/api/card/:cardName", function (req, res) {
     if (req.params.cardName) {
       let cn = req.params.cardName
