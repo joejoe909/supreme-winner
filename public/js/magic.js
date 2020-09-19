@@ -2,16 +2,21 @@ $(document).ready(function () {
     let hasCard = false;
     let mtgCard = Object.create(card);
     
-    putInDb((mtgPost)=>{
-        
-    });
+    function addtopostcard(mtgPost){
+        console.log("addtopostcard");
+        console.log(mtgPost);
+        //put in id="postHldr"
+        for(i = 0; i < mtgPost; i++){
+            console.log(mtgPost[i]);
+        }
+    };
     
      
-    getCard((cardSrch)=> {
+    function getCard(cardSrch){
        mtgCard.blankCard();
         $.get("/api/card/" + cardSrch)
             // on success, run this callback
-            .then(function (data) {
+            .then((data)=> {
                 // log the data we found
                 console.log(data);
                 mtgCard.name = data[0].name;
@@ -22,11 +27,10 @@ $(document).ready(function () {
                 mtgCard.toughness = data[0].toughness;
                 mtgCard.loyalty = data[0].loyalty              
                 console.log(mtgCard);
-                putInDb(mtgCard);
+                addtopostcard(mtgCard);
                 mtgCard.blankCard();
-            });
-            
-    });
+            });         
+    };
 
 
     // send an AJAX POST-request with jQuery
@@ -39,8 +43,7 @@ $(document).ready(function () {
         let cardName = prompt("Type in the Name of your Card.");
         console.log(cardName);
         console.log("addCard click");
-        getCard(cardName);
-       
+        getCard(cardName);  
     });
 });
 
