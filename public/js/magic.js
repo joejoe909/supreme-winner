@@ -2,7 +2,12 @@ $(document).ready(function () {
     let hasCard = false;
     let mtgCard = Object.create(card);
     
-    function getCard(cardSrch) {
+    putInDb((mtgPost)=>{
+        
+    });
+    
+     
+    getCard((cardSrch)=> {
        mtgCard.blankCard();
         $.get("/api/card/" + cardSrch)
             // on success, run this callback
@@ -17,10 +22,11 @@ $(document).ready(function () {
                 mtgCard.toughness = data[0].toughness;
                 mtgCard.loyalty = data[0].loyalty              
                 console.log(mtgCard);
+                putInDb(mtgCard);
                 mtgCard.blankCard();
             });
             
-    };
+    });
 
 
     // send an AJAX POST-request with jQuery
@@ -36,10 +42,6 @@ $(document).ready(function () {
         getCard(cardName);
        
     });
-
-   
-
-   
 });
 
 let card = {
