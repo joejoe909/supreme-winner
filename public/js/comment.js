@@ -1,5 +1,6 @@
 $(document).ready(() => {
 $.get("/api/all", function(data) {
+
   
   if (data.length !== 0) {
     
@@ -7,17 +8,12 @@ $.get("/api/all", function(data) {
       
         var row = $("<div>");
         row.addClass("com-list");
-  
         row.append("<p>" + data[i].author + " commented.. </p>");
         row.append("<p>" + data[i].body + "</p>");
         row.append("<p>At " + moment(data[i].created_at).format("h:mma on dddd") + "</p>");
-  
         $("#comment-area").prepend(row);
-  
       }
-  
     }
-  
   });
   
   // When user chirps (clicks addBtn)
