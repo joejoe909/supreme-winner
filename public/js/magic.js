@@ -1,13 +1,13 @@
 $(document).ready(function () {
     let hasCard = false;
     let mtgCard = Object.create(card);
+    let mtgPosting = Object.create(card);
     
     function addHTag(item, property){
         let insert = $("<h4>" + property + item + "</h4><br>");
        if(item !== undefined) $("#postHldr").append(insert);
         
     }
-
 
     function addtopostcard(mtgPost){
         console.log("addtopostcard");
@@ -20,10 +20,11 @@ $(document).ready(function () {
         addHTag(mtgPost.cmc, "CMC:");
         addHTag(mtgPost.power, "Power:");
         addHTag(mtgPost.toughness, "Toughness:");
-        addHTag(mtgPost.loyalty, "Loyalty:")
+        addHTag(mtgPost.loyalty, "Loyalty:");
+        mtgPosting.blankCard();
+        mtgPosting = mtgPost;
     };
-    
-     
+         
     function getCard(cardSrch){
        mtgCard.blankCard();
         $.get("/api/card/" + cardSrch)
@@ -48,7 +49,7 @@ $(document).ready(function () {
     // send an AJAX POST-request with jQuery
     $("#mkPost").on("click", function () {
         console.log("mkpost click");
-
+        
     });
 
     $("#addCard").on("click", function () {
@@ -67,6 +68,7 @@ let card = {
     power:"",
     toughness:"",
     loyalty:"",
+    userPost: "",
     blankCard: function(){
         this.name = "";
         this.imageUrl = "";
@@ -75,5 +77,6 @@ let card = {
         this.power = "";
         this.toughness = "";
         this.loyalty = "";
+        this.userPost = "";
     }  
 }
