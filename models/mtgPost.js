@@ -6,7 +6,7 @@ module.exports = function (sequelize, DataTypes) {
         }, 
         usrTxt: {                                    //text a user can post 
             type: DataTypes.STRING,
-            allowNull: true,
+            allowNull: false,
         },
         name: {                                //card related data 
             type: DataTypes.STRING,

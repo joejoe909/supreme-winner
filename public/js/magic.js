@@ -8,7 +8,7 @@ $(document).ready(function () {
        if(item !== undefined) $("#postHldr").append(insert);
         
     }
-
+   
     function addtopostcard(){
         $("#postHldr").html("");
         if(!(mtgCard.imageUrl===""))
@@ -52,11 +52,15 @@ $(document).ready(function () {
     $("#mkPost").on("click", function (e) {
         e.preventDefault();
         console.log("mkpost click");
-        mtgCard.usrtxt = $("#postBx").val().trim();
+        testEmpty = $("#postBx").val().trim()
+        if(testEmpty === '')
+        {
+            alert("You need to add text to the post in order to publish.");
+            return;
+        }
+        mtgCard.usrTxt = $("#postBx").val().trim();
         console.log("making post with object...")
-        $.post("/api/addPost", mtgCard, function(){
-                                     
-        }); 
+        $.post("/api/addPost", mtgCard, function(){ }); 
     });
 
     $("#addCard").on("click", function (e) {
@@ -70,7 +74,7 @@ $(document).ready(function () {
 
 let card = {
     hasCard: false,
-    usrtxt: "",
+    usrTxt: "",
     name: "",
     type: "",
     cmc: "",
@@ -86,6 +90,6 @@ let card = {
         this.power = "";
         this.toughness = "";
         this.loyalty = "";
-        this.usrtxt = "";
+        this.usrTxt = "";
     }  
 }
