@@ -41,8 +41,11 @@
           </div>
 
           <ul class="list-group">
-            {{> post}}
-           
+              <ol>
+                {{#each post}} 
+                {{> post}}
+                {{/each}}
+              </ol> 
           </ul>
 
 

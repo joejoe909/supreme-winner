@@ -42,8 +42,7 @@ $(document).ready(function () {
                 mtgCard.toughness = data[0].toughness;
                 mtgCard.loyalty = data[0].loyalty              
                 console.log(mtgCard);
-                addtopostcard();
-                
+                addtopostcard();  
             });         
     };
 
