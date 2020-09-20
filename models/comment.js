@@ -9,7 +9,7 @@
 // Creates a "Chirp" model that matches up with DB
 module.exports = function (sequelize, DataTypes) {
 
-    var Comment = sequelize.define("comment", {
+    var Comment = sequelize.define("Comments", {
       author: {type: DataTypes.STRING,
             allowNull: false,
             validate: {

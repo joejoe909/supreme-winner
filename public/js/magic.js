@@ -9,20 +9,21 @@ $(document).ready(function () {
         
     }
 
-    function addtopostcard(mtgPost){
-        console.log("addtopostcard");
-        console.log(mtgPost);
-        $("#postHldr").html(""); 
-        let imgCrd = $("<img>").attr('src', mtgPost.imageUrl);
-        $("#postHldr").append(imgCrd);
-        addHTag(mtgPost.name, "Name:");
-        addHTag(mtgPost.type, "Type:");
-        addHTag(mtgPost.cmc, "CMC:");
-        addHTag(mtgPost.power, "Power:");
-        addHTag(mtgPost.toughness, "Toughness:");
-        addHTag(mtgPost.loyalty, "Loyalty:");
-        mtgPosting.blankCard();
-        mtgPosting = mtgPost;
+    function addtopostcard(){
+        $("#postHldr").html("");
+        if(!(mtgCard.imageUrl===""))
+        { 
+            mtgCard.hasCard = true;
+            let imgCrd = $("<img>").attr('src', mtgCard.imageUrl);
+            $("#postHldr").append(imgCrd);
+        }
+        addHTag(mtgCard.name, "Name:");
+        addHTag(mtgCard.type, "Type:");
+        addHTag(mtgCard.cmc, "CMC:");
+        addHTag(mtgCard.power, "Power:");
+        addHTag(mtgCard.toughness, "Toughness:");
+        addHTag(mtgCard.loyalty, "Loyalty:");
+      
     };
          
     function getCard(cardSrch){
@@ -40,8 +41,8 @@ $(document).ready(function () {
                 mtgCard.toughness = data[0].toughness;
                 mtgCard.loyalty = data[0].loyalty              
                 console.log(mtgCard);
-                addtopostcard(mtgCard);
-                mtgCard.blankCard();
+                addtopostcard();
+                
             });         
     };
 
@@ -49,7 +50,11 @@ $(document).ready(function () {
     // send an AJAX POST-request with jQuery
     $("#mkPost").on("click", function () {
         console.log("mkpost click");
-        
+        mtgCard.usrtxt = $("#postBx").val().trim();
+        console.log("making post with object...")
+        $.post("/api/addPost", mtgCard, function(){
+                                     
+        }); 
     });
 
     $("#addCard").on("click", function () {
@@ -61,14 +66,15 @@ $(document).ready(function () {
 });
 
 let card = {
+    hasCard: false,
+    usrtxt: "",
     name: "",
-    imageUrl: "",
     type: "",
     cmc: "",
     power:"",
     toughness:"",
     loyalty:"",
-    userPost: "",
+    imageUrl: "",
     blankCard: function(){
         this.name = "";
         this.imageUrl = "";
@@ -77,6 +83,6 @@ let card = {
         this.power = "";
         this.toughness = "";
         this.loyalty = "";
-        this.userPost = "";
+        this.usrtxt = "";
     }  
 }

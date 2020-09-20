@@ -1,6 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
     let Post = sequelize.define("mtgPosts", {         //table name
-
         hasCard:{
             type: DataTypes.BOOLEAN,
             defaultValue: false
@@ -43,6 +42,12 @@ module.exports = function (sequelize, DataTypes) {
             }
         },
         loyalty: {
+            type: DataTypes.STRING,
+            validate: {
+                hasCard: true
+            }
+        },
+        imageURL: {
             type: DataTypes.STRING,
             validate: {
                 hasCard: true

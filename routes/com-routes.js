@@ -5,7 +5,7 @@
 // Dependencies
 // =============================================================
 // const passport = require("../config/passport");
-var Comment = require("../models/comment.js");
+var db = require("../models/");
 // Routes
 // =============================================================
 module.exports = function(app) {
@@ -17,7 +17,7 @@ module.exports = function(app) {
       // Sequelize queries are asynchronous, which helps with perceived speed.
       // If we want something to be guaranteed to happen after the query, we'll use
       // the .then function
-      Comment.findAll({}).then(function(results) {
+      db.Comment.findAll({}).then(function(results) {
         // results are available to us inside the .then
         res.json(results);
       });
