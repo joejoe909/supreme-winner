@@ -1,4 +1,4 @@
-var db = require("../models");
+const db = require("../models");
 const mtg = require("mtgsdk");
 
 module.exports = function (app) {
@@ -14,9 +14,20 @@ module.exports = function (app) {
     });
 
     app.post("/api/addPost", function (req, res) {
-        db.mtgPost.create(req.body.mtgCard).then(function(mtgCard) {
+        db.mtgPosts.create({
+            hasCard: req.body.hasCard,
+            usrTxt: req.body.usrTxt,
+            name: req.body.name,
+            type: req.body.type,
+            cmc: req.body.cmc,
+            power: req.body.power,
+            toughness: req.body.toughness,
+            loyalty: req.body.loyalty,
+            imageUrl: req.body.imageUrl
+        
+        }).then(function(mtgCard) {
             console.log("post called mtgPost looks like...");
-            console.log(mtgCard);
+            console.log(req.body);
             res.json(mtgCard);
         });
     });

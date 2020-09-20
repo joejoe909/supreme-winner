@@ -35,6 +35,7 @@ $(document).ready(function () {
                 console.log(data);
                 mtgCard.name = data[0].name;
                 mtgCard.imageUrl = data[0].imageUrl;
+                console.log("mtcCard.imageUrl is type of:" + typeof(mtgCard.imageUrl));
                 mtgCard.type = data[0].type;
                 mtgCard.cmc = data[0].cmc;
                 mtgCard.power = data[0].power;
@@ -48,7 +49,8 @@ $(document).ready(function () {
 
 
     // send an AJAX POST-request with jQuery
-    $("#mkPost").on("click", function () {
+    $("#mkPost").on("click", function (e) {
+        e.preventDefault();
         console.log("mkpost click");
         mtgCard.usrtxt = $("#postBx").val().trim();
         console.log("making post with object...")
@@ -57,7 +59,8 @@ $(document).ready(function () {
         }); 
     });
 
-    $("#addCard").on("click", function () {
+    $("#addCard").on("click", function (e) {
+        e.preventDefault();
         let cardName = prompt("Type in the Name of your Card.");
         console.log(cardName);
         console.log("addCard click");
