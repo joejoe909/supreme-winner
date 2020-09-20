@@ -5,7 +5,9 @@
 // Dependencies
 // =============================================================
 // const passport = require("../config/passport");
+
 var db = require("../models/");
+
 // Routes
 // =============================================================
 module.exports = function(app) {
@@ -30,7 +32,7 @@ module.exports = function(app) {
       console.log("Comment Data:");
       console.log(req.body);
   
-      Comment.create({
+      Comment.User.create({
         author: req.body.author,
         body: req.body.body,
         created_at: req.body.created_at
