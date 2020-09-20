@@ -1,7 +1,6 @@
 // Requiring our models and passport as we've configured it
 const db = require("../models");
 const passport = require("../config/passport");
-const mtg = require("mtgsdk");
 
 module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.
@@ -52,14 +51,4 @@ module.exports = function(app) {
     }
   });
 
-    //Route for making a MTG request this will 
-  app.get("/api/card/:cardName", function (req, res) {
-    if (req.params.cardName) {
-      let cn = req.params.cardName
-      mtg.card.where({ name: cn }).then((results) => {
-          res.json(results);
-        })
-      
-    } 
-  });
 };

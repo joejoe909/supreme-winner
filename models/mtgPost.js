@@ -1,6 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
-    let Post = sequelize.define("mtgPosts", {         //table name
-
+    let mtgPosts = sequelize.define("mtgPosts", {         //table name
         hasCard:{
             type: DataTypes.BOOLEAN,
             defaultValue: false
@@ -8,50 +7,46 @@ module.exports = function (sequelize, DataTypes) {
         usrTxt: {                                    //text a user can post 
             type: DataTypes.STRING,
             allowNull: false,
-            validate: {
-                len: [1]
-            }
         },
         name: {                                //card related data 
             type: DataTypes.STRING,
-            validate: {
-                hasCard: true
-            }
+            allowNull: true,
+         
         },
         type: {
             type: DataTypes.STRING,
-            validate: {
-                hasCard: true
-            }
+            allowNull: true,
+         
         },
         cmc: {
             type: DataTypes.STRING,
-            validate: {
-                hasCard: true
-            }
+            allowNull: true,
+          
         },
         power: {
             type: DataTypes.STRING,
-            validate: {
-                hasCard: true
-            }
+            allowNull: true,
+         
         },
         toughness: {
             type: DataTypes.STRING,
-            validate: {
-                hasCard: true
-            }
+            allowNull: true,
+      
         },
         loyalty: {
             type: DataTypes.STRING,
-            validate: {
-                hasCard: true
-            }
+            allowNull: true,
+   
+        },
+        imageUrl: {
+            type: DataTypes.STRING,
+            allowNull: true,
+         
         }
     });
 
-    Post.associate = function (models) {
-        Post.belongsTo(models.User, {  //this is still in question
+    mtgPosts.associate = function (models) {
+        mtgPosts.belongsTo(models.User, {  //this is still in question
           
             foregnKey: {
 
@@ -60,5 +55,5 @@ module.exports = function (sequelize, DataTypes) {
         });
     };
 
-    return Post;
+    return mtgPosts;
 }

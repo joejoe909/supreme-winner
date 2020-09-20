@@ -8,21 +8,22 @@ $(document).ready(function () {
        if(item !== undefined) $("#postHldr").append(insert);
         
     }
-
-    function addtopostcard(mtgPost){
-        console.log("addtopostcard");
-        console.log(mtgPost);
-        $("#postHldr").html(""); 
-        let imgCrd = $("<img>").attr('src', mtgPost.imageUrl);
-        $("#postHldr").append(imgCrd);
-        addHTag(mtgPost.name, "Name:");
-        addHTag(mtgPost.type, "Type:");
-        addHTag(mtgPost.cmc, "CMC:");
-        addHTag(mtgPost.power, "Power:");
-        addHTag(mtgPost.toughness, "Toughness:");
-        addHTag(mtgPost.loyalty, "Loyalty:");
-        mtgPosting.blankCard();
-        mtgPosting = mtgPost;
+   
+    function addtopostcard(){
+        $("#postHldr").html("");
+        if(!(mtgCard.imageUrl===""))
+        { 
+            mtgCard.hasCard = true;
+            let imgCrd = $("<img>").attr('src', mtgCard.imageUrl);
+            $("#postHldr").append(imgCrd);
+        }
+        addHTag(mtgCard.name, "Name:");
+        addHTag(mtgCard.type, "Type:");
+        addHTag(mtgCard.cmc, "CMC:");
+        addHTag(mtgCard.power, "Power:");
+        addHTag(mtgCard.toughness, "Toughness:");
+        addHTag(mtgCard.loyalty, "Loyalty:");
+      
     };
          
     function getCard(cardSrch){
@@ -34,25 +35,35 @@ $(document).ready(function () {
                 console.log(data);
                 mtgCard.name = data[0].name;
                 mtgCard.imageUrl = data[0].imageUrl;
+                console.log("mtcCard.imageUrl is type of:" + typeof(mtgCard.imageUrl));
                 mtgCard.type = data[0].type;
                 mtgCard.cmc = data[0].cmc;
                 mtgCard.power = data[0].power;
                 mtgCard.toughness = data[0].toughness;
                 mtgCard.loyalty = data[0].loyalty              
                 console.log(mtgCard);
-                addtopostcard(mtgCard);
-                mtgCard.blankCard();
+                addtopostcard();  
             });         
     };
 
 
     // send an AJAX POST-request with jQuery
-    $("#mkPost").on("click", function () {
+    $("#mkPost").on("click", function (e) {
+        e.preventDefault();
         console.log("mkpost click");
-        
+        testEmpty = $("#postBx").val().trim()
+        if(testEmpty === '')
+        {
+            alert("You need to add text to the post in order to publish.");
+            return;
+        }
+        mtgCard.usrTxt = $("#postBx").val().trim();
+        console.log("making post with object...")
+        $.post("/api/addPost", mtgCard, function(){ }); 
     });
 
-    $("#addCard").on("click", function () {
+    $("#addCard").on("click", function (e) {
+        e.preventDefault();
         let cardName = prompt("Type in the Name of your Card.");
         console.log(cardName);
         console.log("addCard click");
@@ -61,14 +72,15 @@ $(document).ready(function () {
 });
 
 let card = {
+    hasCard: false,
+    usrTxt: "",
     name: "",
-    imageUrl: "",
     type: "",
     cmc: "",
     power:"",
     toughness:"",
     loyalty:"",
-    userPost: "",
+    imageUrl: "",
     blankCard: function(){
         this.name = "";
         this.imageUrl = "";
@@ -77,6 +89,6 @@ let card = {
         this.power = "";
         this.toughness = "";
         this.loyalty = "";
-        this.userPost = "";
+        this.usrTxt = "";
     }  
 }
