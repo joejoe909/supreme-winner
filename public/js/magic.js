@@ -6,12 +6,13 @@ $(document).ready(function () {
 
     //this builds a comment component
     function commentCpnt(id) {
+
         let sbmtButton = $("<button> Submit </button>");
         sbmtButton.attr("id", "comment-submit");
         sbmtButton.attr("class", "btn btn-lg pull-right");
 
         let txtArComment = $("<textarea>").attr("class", "form-control");
-        txtArComment.attr("id", "comment-box");
+        txtArComment.attr("id", "comment-box_" + id);
         txtArComment.attr("placeholder", "Enter Comment Here!");
         txtArComment.attr("rows", "3");
 
@@ -30,7 +31,7 @@ $(document).ready(function () {
         col8.append("<br>");
         col8.append(txtArComment);
         col8.append(sbmtButton);
-        ////////////////////////
+        //////////////////////
 
         let commentArea = $("<div>").attr("id", "comment-area" + id);
         let inrH2 = $("<h2> Comments <h2>");
@@ -46,8 +47,16 @@ $(document).ready(function () {
         row.append(col8);
         row.append(innerRow);
         
+        
+        $("#comment-submit").on("click", function(event) {
+            event.preventDefault();
+           let subBtn = $(this).attr("id");
+           $("#" + subBtn).val();
+           
+            
+        });
+        
         return row;
-
     }
 
     //this will add an image to our post content holder
@@ -81,7 +90,7 @@ $(document).ready(function () {
         let li = $("<li>").attr("class", "aPost");
         li.attr("id", "li_" +id);
         li.append(card);
-        
+    
         return li;
     }
 
