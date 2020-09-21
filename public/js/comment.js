@@ -9,6 +9,7 @@ $.get("/api/comments", function(data) {
         var row = $("<div>");
         row.addClass("com-list");
         row.append("<p>" + data[i].author + " commented.. </p>");
+        row.append("<p>" + data[i].mtgPostId + "</p>");
         row.append("<p>" + data[i].body + "</p>");
         // row.append("<p>At " + moment(data[i].created_at).format("h:mma on dddd") + "</p>");
         $("#comment-area").prepend(row);
@@ -24,6 +25,7 @@ $.get("/api/comments", function(data) {
     var newComment = {
       author: $("#author").val().trim(),
       body: $("#comment-box").val().trim(),
+      mtgPostId: $("#mtgPostId").val().trim(),
       // created_at: moment().format("YYYY-MM-DD HH:mm:ss")
     };
   
@@ -41,6 +43,7 @@ $.get("/api/comments", function(data) {
       row.addClass("com-list");
       
       row.append("<p>" + newComment.author + " comments: </p>");
+      row.append("<p>" + newComment.mtgPostId + "</p>");
       row.append("<p>" + newComment.body + "</p>");
       // row.append("<p>At " + moment(newComment.created_at).format("h:mma on dddd") + "</p>");
       
@@ -51,6 +54,7 @@ $.get("/api/comments", function(data) {
     // Empty each input box by replacing the value with an empty string
     $("#author").val("");
     $("#comment-box").val("");
+    $("#mtgPostId").val("");
   });
 
 });
