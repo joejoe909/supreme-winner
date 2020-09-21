@@ -2,11 +2,44 @@ $(document).ready(function () {
     let hasCard = false;
     let mtgCard = Object.create(card);
     let mtgPosting = Object.create(card);
-    
+
     function addHTag(item, property){
         let insert = $("<h4>" + property + item + "</h4><br>");
        if(item !== undefined) $("#postHldr").append(insert);
         
+    }
+
+    function addHTagToPost(item, property) {
+        let insert = $("<h4>" + property + item + "</h4><br>");
+        if (item !== undefined) $("#postCont").append(insert);
+
+    }
+
+    function getAllPosts(){
+        $.get("/api/addToBoard")
+            // on success, run this callback
+            .then((data) => {
+                console.log(data)
+                $("#postCont").html("");
+                for(i = 0; i < data.length; i++){    
+            
+                    if (!(data[i].imageUrl === "")) {
+                        let imgCrd = $("<img>").attr('src', data[i].imageUrl);
+                        $("#postCont").append(imgCrd);
+                    }
+                    if(data.hasCard)
+                    {
+                        addHTagToPost(data[i].name, "Name:");
+                        addHTagToPost(data[i].type, "Type:");
+                        addHTagToPost(data[i].cmc, "CMC:");
+                        addHTagToPost(data[i].power, "Power:");
+                        addHTagToPost(data[i].toughness, "Toughness:");
+                        addHTagToPost(data[i].loyalty, "Loyalty:");
+                    }
+                    addHTagToPost(data[i].usrTxt, "User Posted:");
+                }
+            });  
+
     }
    
     function addtopostcard(){
@@ -69,6 +102,9 @@ $(document).ready(function () {
         console.log("addCard click");
         getCard(cardName);  
     });
+
+    //get all posts once page is loaded.
+    getAllPosts();
 });
 
 let card = {

@@ -12,13 +12,16 @@ module.exports = function (app) {
         // Here we add an "include" property to our options in our findAll query
         // We set the value to an array of the models we want to include in a left outer join
         // In this case, just db.Author
-        db.Post.findAll({
-            where: query,
-            include: [db.Author]
-        }).then(function (dbPost) {
+        db.mtgPosts.findAll({}).then(function (dbPost) {
             res.json(dbPost);
         });
     });
+
+    // app.get("/api/addToBoard", function(req, res){
+    //     app.create([
+
+    //     ])
+    // })
 
     app.get("/api/card/:cardName", function (req, res) {
         if (req.params.cardName) {
