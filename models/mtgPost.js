@@ -1,3 +1,6 @@
+const db = require(".");
+const user = require("./user");
+
 module.exports = function (sequelize, DataTypes) {
     let mtgPosts = sequelize.define("mtgPosts", {         //table name
         hasCard:{
@@ -49,7 +52,7 @@ module.exports = function (sequelize, DataTypes) {
         mtgPosts.belongsTo(models.User, {  //this is still in question
           
             foregnKey: {
-
+                UserId: user.id,
                 allowNull: false
             }
         });
