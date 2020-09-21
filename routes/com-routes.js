@@ -30,7 +30,7 @@ module.exports = function(app) {
   
       db.Comments.create({
         author: req.body.author,
-        body: req.body.body,
+        body: req.body.body
         // created_at: req.body.created_at
       }).then(function(newCom) {
         // `results` here would be the newly created comment
