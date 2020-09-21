@@ -52,10 +52,10 @@ module.exports = function (sequelize, DataTypes) {
         mtgPosts.belongsTo(models.User, {  //this is still in question
           
 
-            foreignKey: {
-
-                allowNull: false
-            }
+            // foreignKey: {
+            //     UserId: user.UserId,
+            //     allowNull: false
+            // }
         });
     };
 
