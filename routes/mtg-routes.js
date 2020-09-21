@@ -3,7 +3,7 @@ const mtg = require("mtgsdk");
 
 module.exports = function (app) {
     //Route for getting all MTG Posts
-    app.get("/api/posts", function (req, res) {
+    app.get("/api/mtgposts", function (req, res) {
         let query = {};
         if (req.query.author_id) {
             query.AuthorId = req.query.author_id;

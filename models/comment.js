@@ -1,4 +1,4 @@
-const { NOW } = require("sequelize/types");
+// const { NOW } = require("sequelize/types");
 // Dependencies
 // =============================================================
 // This may be confusing but here Sequelize (capital) references the standard library
@@ -7,12 +7,12 @@ const { NOW } = require("sequelize/types");
 // var sequelize = require("../config/connection.js");
 // var sequelize = require("../config/config.json");
 
-const { now } = require("sequelize/types/lib/utils");
+// const { now } = require("sequelize/types/lib/utils");
 
 // Creates a "Comment" model that matches up with DB
 module.exports = function (sequelize, DataTypes) {
 
-    var Comment = sequelize.define("Comments", {
+    var Comments = sequelize.define("Comments", {
       author: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -21,14 +21,14 @@ module.exports = function (sequelize, DataTypes) {
           type: DataTypes.STRING,
           allowNull: false,
       },
-      created_at: {
-          type: DataTypes.DATE,
-          defaultValue: NOW,
-        }
+    //   created_at: {
+    //       type: DataTypes.DATE,
+    //       defaultValue: NOW,
+    //     }
     });
 
-    Comment.associate = function (models) {
-        Comment.belongsTo(models.User, {  //this is still in question
+    Comments.associate = function (models) {
+        Comments.belongsTo(models.User, {  //this is still in question
           
             foregnKey: {
 
@@ -37,7 +37,7 @@ module.exports = function (sequelize, DataTypes) {
         });
     };
 
-    return Comment;
+    return Comments;
 }
 // Syncs with DB
 // Makes the Comments Model available for other files (will also create a table)
