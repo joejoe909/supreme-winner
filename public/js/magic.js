@@ -7,11 +7,11 @@ $(document).ready(function () {
     //this builds a comment component
     function commentCpnt(id) {
         let sbmtButton = $("<button> Submit </button>");
-        sbmtButton.attr("id", "comment-submit");
+        sbmtButton.attr("id", "comment-submit_" + id);
         sbmtButton.attr("class", "btn btn-lg pull-right");
 
         let txtArComment = $("<textarea>").attr("class", "form-control");
-        txtArComment.attr("id", "comment-box");
+        txtArComment.attr("id", "comment-box_" + id);
         txtArComment.attr("placeholder", "Enter Comment Here!");
         txtArComment.attr("rows", "3");
 
@@ -184,8 +184,11 @@ $(document).ready(function () {
         }
         mtgCard.usrTxt = $("#postBx").val().trim();
         console.log("making post with object...")
-        $.post("/api/addPost", mtgCard, function(){ }); 
-        location.reload();
+        $.post("/api/addPost", mtgCard, function(){ 
+            
+        }).then((data) => {
+        
+        });
     });
 
     $("#addCard").on("click", function (e) {
