@@ -2,6 +2,19 @@ $(document).ready(function () {
     let hasCard = false;
     let mtgCard = Object.create(card);
     let mtgPosting = Object.create(card);
+    let UserId;
+    let email;
+
+    function getUserId(){
+        $.get("/api/user_data", req, res)
+            // on success, run this callback
+            .then((data) => {
+                email = res.email;
+                UserId = res.id;
+                console.log(JSON.stringigy(res));
+           
+        }); 
+    }
     
     function addHTag(item, property){
         let insert = $("<h4>" + property + item + "</h4><br>");
@@ -58,8 +71,11 @@ $(document).ready(function () {
             return;
         }
         mtgCard.usrTxt = $("#postBx").val().trim();
+        
         console.log("making post with object...")
-        $.post("/api/addPost", mtgCard, function(){ }); 
+        $.post("/api/addPost", mtgCard, function(){ 
+            //email  use this for publishing
+        }); 
     });
 
     $("#addCard").on("click", function (e) {
@@ -69,6 +85,7 @@ $(document).ready(function () {
         console.log("addCard click");
         getCard(cardName);  
     });
+
 });
 
 let card = {
