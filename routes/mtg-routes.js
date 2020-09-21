@@ -2,8 +2,9 @@ const db = require("../models");
 const mtg = require("mtgsdk");
 
 module.exports = function (app) {
-    //Route for getting all MTG Posts
-    app.get("/api/mtgposts", function (req, res) {
+
+    // Route for getting all MTG Posts
+    app.get("/api/allPosts", function (req, res) {
         let query = {};
         if (req.query.author_id) {
             query.AuthorId = req.query.author_id;
@@ -18,9 +19,6 @@ module.exports = function (app) {
             res.json(dbPost);
         });
     });
-
-
-
 
     app.get("/api/card/:cardName", function (req, res) {
         if (req.params.cardName) {
@@ -42,8 +40,7 @@ module.exports = function (app) {
             power: req.body.power,
             toughness: req.body.toughness,
             loyalty: req.body.loyalty,
-            imageUrl: req.body.imageUrl
-        
+            imageUrl: req.body.imageUrl,
         }).then(function(mtgCard) {
             console.log("post called mtgPost looks like...");
             console.log(req.body);

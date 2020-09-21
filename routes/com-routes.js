@@ -17,7 +17,6 @@ module.exports = function(app) {
   
       // Finding all Comments, and then returning them to the user as JSON.
       db.Comments.findAll({}).then(function(results) {
-      
         res.json(results);
       });
   

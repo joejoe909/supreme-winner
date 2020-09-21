@@ -15,7 +15,7 @@ $(document).ready(() => {
     if (!userData.email || !userData.password) {
       return;
     }
-    // If we have an email and password, run the signUpUser function
+    // If we have an email, user and password, run the signUpUser function
     signUpUser(userData.email, userData.password);
     emailInput.val("");
     passwordInput.val("");
