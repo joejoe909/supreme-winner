@@ -17,7 +17,6 @@ module.exports = function(app) {
   
       // Finding all Comments, and then returning them to the user as JSON.
       db.Comments.findAll({}).then(function(results) {
-        // results are available to us inside the .then
         res.json(results);
       });
   
@@ -32,10 +31,10 @@ module.exports = function(app) {
       db.Comments.create({
         author: req.body.author,
         body: req.body.body,
-        created_at: req.body.created_at
-      }).then(function(res) {
+        // created_at: req.body.created_at
+      }).then(function(newCom) {
         // `results` here would be the newly created comment
-        res.end();
+        res.json(newCom);
       });
   
     });
