@@ -21,6 +21,7 @@ module.exports = function (sequelize, DataTypes) {
       },
       mtgPostId:{
           type: DataTypes.INTEGER,
+          defaultValue: 1,
           allowNull: false,
       }
     //   created_at: {
@@ -30,7 +31,7 @@ module.exports = function (sequelize, DataTypes) {
     });
 
     Comments.associate = function (models) {
-        Comments.belongsTo(models.mtgPosts, {  //this is still in question
+        Comments.belongsTo(models.User, {  //this is still in question
           
             foregnKey: {
 

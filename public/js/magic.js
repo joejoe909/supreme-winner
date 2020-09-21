@@ -9,7 +9,7 @@ $(document).ready(function () {
 
         let sbmtButton = $("<button> Submit </button>");
         sbmtButton.attr("id", "comment-submit_" + id);
-        sbmtButton.attr("class", "btn btn-lg pull-right");
+        sbmtButton.attr("class", "btn btn-lg pull-right comSub_");
 
         let txtArComment = $("<textarea>").attr("class", "form-control");
         txtArComment.attr("id", "comment-box_" + id);
@@ -46,15 +46,6 @@ $(document).ready(function () {
         row.attr("id", "row_" + id);
         row.append(col8);
         row.append(innerRow);
-        
-        
-        $("#comment-submit").on("click", function(event) {
-            event.preventDefault();
-           let subBtn = $(this).attr("id");
-           $("#" + subBtn).val();
-           
-            
-        });
         
         return row;
     }
@@ -169,7 +160,29 @@ $(document).ready(function () {
                     post.append(commentCmp);
                     $("#postBrd").prepend(post);
                 }
+                $(".comSub_").on("click", function(event) {
+                    event.preventDefault();
+                   let subBtn = $(this).attr("id");
+                //    let comment = "";
+                   $("." + subBtn).val();
+                    let comment = {
+                       author: $(this).siblings("input").val(),
+                       body: $(this).siblings("textarea").val(),
+                    //    mtgPostId: $(this).attr("id")
+                   }
+                    $.post("/api/comments", comment)
+                    .then(function(data){
+                    
+                    })
+
                 
+                        
+                    
+                    
+                   console.log($(this).siblings("input").val())
+                   console.log($(this).siblings("textarea").val())
+                   alert("click")     
+                });
             });  
 
     }
