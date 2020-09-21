@@ -1,27 +1,27 @@
 $(document).ready(function () {
-    // let pstBuilder = Object.create(postBuilder);
+
     let hasCard = false;
     let mtgCard = Object.create(card);
     let mtgPosting = Object.create(card);
 
     //this builds a comment component
     function commentCpnt(id) {
-        let sbmtButton = $("<button>").textContent("Submit");
-        sbmtButton.attr("id", "comment-submit" + id);
+        let sbmtButton = $("<button> Submit </button>");
+        sbmtButton.attr("id", "comment-submit");
         sbmtButton.attr("class", "btn btn-lg pull-right");
 
         let txtArComment = $("<textarea>").attr("class", "form-control");
-        txtArComment.attr("id", "comment-box" + id);
+        txtArComment.attr("id", "comment-box");
         txtArComment.attr("placeholder", "Enter Comment Here!");
         txtArComment.attr("rows", "3");
 
-        let pComment = $("<p>").textContent("Comment:");
+        let pComment = $("<p> Comment: </p>");
 
         let inptName = $("<input>").attr("class", "form-control");
-        inptName.attr("id", "author" + id);
+        inptName.attr("id", "author");
         inptName.attr("placeholder", "Enter Your Name");
 
-        let pName = $("<p>").textContent("Name:");
+        let pName = $("<p> Name: </p>");
         let col8 = $("<div>").attr("class", "col-sm-8 col-sm-offset-2");
 
         col8.append(pName);
@@ -33,7 +33,7 @@ $(document).ready(function () {
         ////////////////////////
 
         let commentArea = $("<div>").attr("id", "comment-area" + id);
-        let inrH2 = $("<h2>").textContent("Comments");
+        let inrH2 = $("<h2> Comments <h2>");
         let inrCol8 = $("<div>").attr("class", "col-sm-8 col-sm-offset-2");
         let innerRow = $("<div>").attr("class", "row");
         innerRow.append(inrCol8);
@@ -42,22 +42,26 @@ $(document).ready(function () {
         innerRow.append(commentArea);
 
         let row = $("<div>").attr("class", "row");
-        row.attr("id", "row" + id);
+        row.attr("id", "row_" + id);
         row.append(col8);
         row.append(innerRow);
-        $("#postBrd").append(row);
+        
+        return row;
+
     }
 
     //this will add an image to our post content holder
     function addImg(imgUrl, id) {
         let imgCrd = $("<img>").attr('src', imgUrl);
-        $("#postCont" +id).append(imgCrd);
+        imgCrd.attr("id", "img_"+id);
+        return imgCrd;
     }
     
     //this add <h4> tags to our content holder.
     function addConHTag(item, property, id) {
         let insert = $("<h4>" + property + item + "</h4><br>");
-        if (item !== undefined) $("#postCont"+ id).append(insert);
+        insert.attr("id", "htag" +"_" + property + "_" + id)
+        return insert;
 
     }
 
@@ -69,17 +73,19 @@ $(document).ready(function () {
         row.append(postCont);
 
         let cardBody = $("<div>").attr("class", "card-body");
+        cardBody.attr("id", "cardBody"+id);
         cardBody.append(row);
         let card = $("<div>").attr("class", "card");
         card.append(cardBody);
 
         let li = $("<li>").attr("class", "aPost");
-        li.attr("id", "li" +id);
+        li.attr("id", "li_" +id);
         li.append(card);
-        $("#postBrd").prepend(li);
+        
+        return li;
     }
 
-
+    //this is used for displaying card data before a user posts.
     function addHTag(item, property){
         let insert = $("<h4>" + property + item + "</h4><br>");
        if(item !== undefined) $("#postHldr").append(insert);
@@ -92,24 +98,36 @@ $(document).ready(function () {
             .then((data) => {
                 console.log(data)
                 for(i = 0; i < data.length; i++){    
-                    postBuilder(data[i].id);
+                   let post = postBuilder(data[i].id);
                     if (data[i].imageUrl !== "") {
-                        addImg(data[i].imageUrl, data[i].id);
+                       let postImg = addImg(data[i].imageUrl, data[i].id);
+                       post.append(postImg);
                     }
                     if(data[i].hasCard)
                     {
                         
                         //adding content to
-                        addConHTag(data[i].name, "Name:", data[i].id);
-                        addConHTag(data[i].type, "Type:", data[i].id);
-                        addConHTag(data[i].cmc, "CMC:", data[i].id);
-                        addConHTag(data[i].power, "Power:", data[i].id);
-                        addConHTag(data[i].toughness, "Toughness:", data[i].id);
-                        addConHTag(data[i].loyalty, "Loyalty:", data[i].id);
+                       let postName = addConHTag(data[i].name, "Name:", data[i].id);
+                       let postType = addConHTag(data[i].type, "Type:", data[i].id);
+                       let postCMC = addConHTag(data[i].cmc, "CMC:", data[i].id);
+                       let postPower = addConHTag(data[i].power, "Power:", data[i].id);
+                       let postToughness = addConHTag(data[i].toughness, "Toughness:", data[i].id);
+                       let postLoyalty = addConHTag(data[i].loyalty, "Loyalty:", data[i].id);
+                      
+                       post.append(postName);
+                       post.append(postType);
+                       post.append(postCMC);
+                       post.append(postPower);
+                       post.append(postToughness);
+                       post.append(postLoyalty);
                         
                     }
-                    addConHTag(data[i].usrTxt, "User Posted:", data[i].id);
-                //    commentCpnt(data[i].id); //create the comment component.
+                    let postTxt = addConHTag(data[i].usrTxt, "User Posted:", data[i].id);
+                    post.append(postTxt);
+                    
+                     let commentCmp = commentCpnt(data[i].id); //create the comment component.
+                    post.append(commentCmp);
+                    $("#postBrd").prepend(post);
                 }
                 
             });  
@@ -206,34 +224,6 @@ let card = {
 }
 
 
-
-    //using jQuery module pattern
-    let postBuilder = { //this will hold a single post
-        buildElements: function(){
-        row = $("<div>").attr("class", "row");
-        //id will be assigend with sql data, here is where we will append our card data and user post
-        let postCont = $("<div>").attr("class", "postCont");
-        row.append(postCont);
-
-        let cardBody = $("<div>").attr("class", "card-body");
-        cardBody.append("row");
-        let card = $("<div>").attr("class", "card");
-        card.append(cardBody);
-            
-        let li = $("<li>").attr("class", "aPost");
-        li.append(card);
-        },
-
-        addHTag:function (item, property) {
-            let insert = $("<h4>" + property + item + "</h4><br>");
-            if (item !== undefined) $(this.postCont).append(insert);
-        },
-
-        addImg: function(imgUrl) {
-            let imgCrd = $("<img>").attr('src', imgUrl);
-            $(this.postCont).append(imgCrd);
-        }
-    };
 
 
 
