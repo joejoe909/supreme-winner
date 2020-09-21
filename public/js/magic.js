@@ -19,7 +19,7 @@ $(document).ready(function () {
         let pComment = $("<p> Comment: </p>");
 
         let inptName = $("<input>").attr("class", "form-control");
-        inptName.attr("id", "author");
+        inptName.attr("id", "author_" + id);
         inptName.attr("placeholder", "Enter Your Name");
 
         let pName = $("<p> Name: </p>");
@@ -46,7 +46,6 @@ $(document).ready(function () {
         row.attr("id", "row_" + id);
         row.append(col8);
         row.append(innerRow);
-        
         return row;
     }
 
@@ -261,6 +260,9 @@ $(document).ready(function () {
         getCard(cardName);  
         
     });
+
+    
+
 
     //get all posts once page is loaded.
     getAllPosts();
