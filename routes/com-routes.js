@@ -5,7 +5,9 @@
 // Dependencies
 // =============================================================
 // const passport = require("../config/passport");
+
 var db = require("../models/");
+
 // Routes
 // =============================================================
 module.exports = function(app) {
@@ -13,10 +15,7 @@ module.exports = function(app) {
     // Get all chirps
     app.get("/api/all", function(req, res) {
   
-      // Finding all Chirps, and then returning them to the user as JSON.
-      // Sequelize queries are asynchronous, which helps with perceived speed.
-      // If we want something to be guaranteed to happen after the query, we'll use
-      // the .then function
+      // Finding all Comments, and then returning them to the user as JSON.
       db.Comment.findAll({}).then(function(results) {
         // results are available to us inside the .then
         res.json(results);
@@ -24,18 +23,18 @@ module.exports = function(app) {
   
     });
   
-    // Add a chirp
+    // Add a comment
     app.post("/api/new", function(req, res) {
   
       console.log("Comment Data:");
       console.log(req.body);
   
-      Comment.create({
+      Comment.User.create({
         author: req.body.author,
         body: req.body.body,
         created_at: req.body.created_at
       }).then(function(res) {
-        // `results` here would be the newly created chirp
+        // `results` here would be the newly created comment
         res.end();
       });
   
