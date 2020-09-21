@@ -1,0 +1,15 @@
+id,hasCard,usrTxt,name,type,cmc,power,toughness,loyalty,imageUrl,createdAt,updatedAt,UserId
+1,1,"The card for all Proramers!!!!","Glasses of Urza",Artifact,1,,,,http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=613&type=card,"2020-09-21 18:05:06","2020-09-21 18:05:06",NULL
+2,1,"Who want to get wrecked?","Lord of the Pit","Creature — Demon",7,7,7,,http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=135271&type=card,"2020-09-21 18:05:34","2020-09-21 18:05:34",NULL
+3,1,"Me after programing for 16+ hours!",Dehydration,"Enchantment — Aura",4,,,,http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=129521&type=card,"2020-09-21 18:07:58","2020-09-21 18:07:58",NULL
+4,1,"Ever read Ann Rice?","Sorin's Thirst",Instant,2,,,,http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=368509&type=card,"2020-09-21 18:08:56","2020-09-21 18:08:56",NULL
+5,1,"This guy looks like our local Meth Head !!!!","Sengir Vampire","Creature — Vampire",5,4,4,,http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=129724&type=card,"2020-09-21 18:09:43","2020-09-21 18:09:43",NULL
+6,1,"The More Wicked the better!","Breath of Malfegor",Instant,5,,,,http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=161291&type=card,"2020-09-21 19:21:02","2020-09-21 19:21:02",NULL
+7,1,"Did you hear about the new Dune move? MTG freaks be like...","Massacre Wurm","Creature — Wurm",6,6,5,,http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=485437&type=card,"2020-09-21 19:34:59","2020-09-21 19:34:59",NULL
+8,1,"Tu madre es "aye mejito que feo"!","Extractor Demon","Creature — Demon",6,5,5,,http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=220507&type=card,"2020-09-21 19:38:33","2020-09-21 19:38:33",NULL
+9,1,Sick!!!!,"Hex Parasite","Artifact Creature — Insect",1,1,1,,http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=218008&type=card,"2020-09-21 19:48:05","2020-09-21 19:48:05",NULL
+10,1,"For a moment I thought this was Mark Zuckerberg! LOL!","Johnny, Combo Player","Legendary Creature — Human Gamer",4,1,1,,http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=479419&type=card,"2020-09-21 19:52:05","2020-09-21 19:52:05",NULL
+11,1,Cheetah!,Cheatyface,"Creature — Efreet",3,2,2,,http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=479416&type=card,"2020-09-21 19:55:03","2020-09-21 19:55:03",NULL
+12,1,"Hank Hill be like Dammit bobby!","Stop That",Instant,1,,,,http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=74346&type=card,"2020-09-21 19:56:45","2020-09-21 19:56:45",NULL
+13,1,"The card to slip onto your old mans dresser.","Murderous Betrayal",Enchantment,3,,,,http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=45335&type=card,"2020-09-21 20:01:43","2020-09-21 20:01:43",NULL
+14,1,"Did you hear about the new Sharknado movie?","Shabraz, the Skyshark","Legendary Creature — Shark Bird",5,3,3,,http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=484721&type=card,"2020-09-21 20:03:33","2020-09-21 20:03:33",NULL

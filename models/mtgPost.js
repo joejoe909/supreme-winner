@@ -50,8 +50,7 @@ module.exports = function (sequelize, DataTypes) {
 
     mtgPosts.associate = function (models) {
         mtgPosts.belongsTo(models.User, {  //this is still in question
-          
-
+        
             // foreignKey: {
             //     UserId: user.UserId,
             //     allowNull: false

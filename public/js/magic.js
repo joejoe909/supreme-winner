@@ -7,9 +7,9 @@ $(document).ready(function () {
     //this builds a comment component
     function commentCpnt(id) {
 
-        let sbmtButton = $("<button> Submit </button>");
-        sbmtButton.attr("id", "comment-submit_" + id);
-        sbmtButton.attr("class", "btn btn-lg pull-right");
+        let sbmtButton = $("<button>").html("Submit");
+        sbmtButton.attr("id", id);
+        sbmtButton.attr("class", "btn btn-lg pull-right comSub_");
 
         let txtArComment = $("<textarea>").attr("class", "form-control");
         txtArComment.attr("id", "comment-box_" + id);
@@ -19,7 +19,7 @@ $(document).ready(function () {
         let pComment = $("<p> Comment: </p>");
 
         let inptName = $("<input>").attr("class", "form-control");
-        inptName.attr("id", "author");
+        inptName.attr("id", "author_" + id);
         inptName.attr("placeholder", "Enter Your Name");
 
         let pName = $("<p> Name: </p>");
@@ -46,16 +46,7 @@ $(document).ready(function () {
         row.attr("id", "row_" + id);
         row.append(col8);
         row.append(innerRow);
-        
-        
-        $("#comment-submit").on("click", function(event) {
-            event.preventDefault();
-           let subBtn = $(this).attr("id");
-           $("#" + subBtn).val();
-           
-            
-        });
-        
+
         return row;
     }
 
@@ -248,6 +239,9 @@ $(document).ready(function () {
         getCard(cardName);  
         
     });
+
+    
+
 
     //get all posts once page is loaded.
     getAllPosts();
