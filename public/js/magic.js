@@ -16,7 +16,7 @@ $(document).ready(function () {
     }
 
     function getAllPosts(){
-        $.get("/api/addToBoard")
+        $.get("/api/allPosts")
             // on success, run this callback
             .then((data) => {
                 console.log(data)
