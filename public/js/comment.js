@@ -1,5 +1,5 @@
 $(document).ready(() => {
-$.get("/api/all", function(data) {
+$.get("/api/comments", function(data) {
 
   
   if (data.length !== 0) {
@@ -10,7 +10,7 @@ $.get("/api/all", function(data) {
         row.addClass("com-list");
         row.append("<p>" + data[i].author + " commented.. </p>");
         row.append("<p>" + data[i].body + "</p>");
-        row.append("<p>At " + moment(data[i].created_at).format("h:mma on dddd") + "</p>");
+        // row.append("<p>At " + moment(data[i].created_at).format("h:mma on dddd") + "</p>");
         $("#comment-area").prepend(row);
       }
     }
@@ -30,7 +30,7 @@ $.get("/api/all", function(data) {
     console.log(newComment);
   
     // Send an AJAX POST-request with jQuery
-    $.post("/api/new", newComment)
+    $.post("/api/comments", newComment)
     // On success, run the following code
     .then(function() {
       
