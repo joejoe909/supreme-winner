@@ -16,11 +16,11 @@ $.get("/api/all", function(data) {
     }
   });
   
-  // When user chirps (clicks addBtn)
+  // When user comments (clicks addBtn)
   $("#comment-submit").on("click", function(event) {
     event.preventDefault();
   
-    // Make a newChirp object
+    // Make a newComment object
     var newComment = {
       author: $("#author").val().trim(),
       body: $("#comment-box").val().trim(),

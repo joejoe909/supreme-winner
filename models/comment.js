@@ -1,3 +1,4 @@
+const { NOW } = require("sequelize/types");
 // Dependencies
 // =============================================================
 // This may be confusing but here Sequelize (capital) references the standard library
@@ -6,21 +7,24 @@
 // var sequelize = require("../config/connection.js");
 // var sequelize = require("../config/config.json");
 
-// Creates a "Chirp" model that matches up with DB
+const { now } = require("sequelize/types/lib/utils");
+
+// Creates a "Comment" model that matches up with DB
 module.exports = function (sequelize, DataTypes) {
 
     var Comment = sequelize.define("Comments", {
-      author: {type: DataTypes.STRING,
+      author: {
+            type: DataTypes.STRING,
             allowNull: false,
-            validate: {
-                len: [1]
-            }},
-      body:{type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-            len: [1]
-        }},
-      created_at: {type: DataTypes.DATE}
+           },
+      body:{
+          type: DataTypes.STRING,
+          allowNull: false,
+      },
+      created_at: {
+          type: DataTypes.DATE,
+          defaultValue: NOW,
+        }
     });
 
     Comment.associate = function (models) {
@@ -36,7 +40,7 @@ module.exports = function (sequelize, DataTypes) {
     return Comment;
 }
 // Syncs with DB
-// Makes the Chirp Model available for other files (will also create a table)
+// Makes the Comments Model available for other files (will also create a table)
 
 // Comment.sync();
 // module.exports = Comment;
