@@ -30,7 +30,6 @@ $.get("/api/all", function(data) {
     console.log(newComment);
   
     // Send an AJAX POST-request with jQuery
-    $.post("/api/new", newComment)
     // On success, run the following code
     .then(function() {
       

@@ -2,19 +2,6 @@ $(document).ready(function () {
     let hasCard = false;
     let mtgCard = Object.create(card);
     let mtgPosting = Object.create(card);
-    let UserId;
-    let email;
-
-    function getUserId(){
-        $.get("/api/user_data", req, res)
-            // on success, run this callback
-            .then((data) => {
-                email = res.email;
-                UserId = res.id;
-                console.log(JSON.stringigy(res));
-           
-        }); 
-    }
     
     function addHTag(item, property){
         let insert = $("<h4>" + property + item + "</h4><br>");

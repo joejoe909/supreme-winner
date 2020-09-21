@@ -13,10 +13,10 @@ var db = require("../models/");
 module.exports = function(app) {
 
     // Get all chirps
-    app.get("/api/all", function(req, res) {
+    app.get("/api/comments", function(req, res) {
   
       // Finding all Comments, and then returning them to the user as JSON.
-      db.Comment.findAll({}).then(function(results) {
+      db.Comments.findAll({}).then(function(results) {
         // results are available to us inside the .then
         res.json(results);
       });
@@ -24,12 +24,12 @@ module.exports = function(app) {
     });
   
     // Add a comment
-    app.post("/api/new", function(req, res) {
+    app.post("/api/comments", function(req, res) {
   
       console.log("Comment Data:");
       console.log(req.body);
   
-      Comment.User.create({
+      db.Comments.create({
         author: req.body.author,
         body: req.body.body,
         created_at: req.body.created_at
