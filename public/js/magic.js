@@ -91,11 +91,8 @@ $(document).ready(function () {
             return;
         }
         mtgCard.usrTxt = $("#postBx").val().trim();
-        
         console.log("making post with object...")
-        $.post("/api/addPost", mtgCard, function(){ 
-            //email  use this for publishing
-        }); 
+        $.post("/api/addPost", mtgCard, function(){ }); 
     });
 
     $("#addCard").on("click", function (e) {
@@ -105,6 +102,7 @@ $(document).ready(function () {
         console.log("addCard click");
         getCard(cardName);  
     });
+
     //get all posts once page is loaded.
     getAllPosts();
 });
