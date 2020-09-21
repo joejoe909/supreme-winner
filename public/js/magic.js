@@ -8,7 +8,7 @@ $(document).ready(function () {
     function commentCpnt(id) {
 
         let sbmtButton = $("<button> Submit </button>");
-        sbmtButton.attr("id", "comment-submit");
+        sbmtButton.attr("id", "comment-submit_" + id);
         sbmtButton.attr("class", "btn btn-lg pull-right");
 
         let txtArComment = $("<textarea>").attr("class", "form-control");
@@ -101,6 +101,37 @@ $(document).ready(function () {
         
     }
 
+    //prepending to the post board same as getAllPost but we're not dealing with an array
+    function prependPost(data){
+        let post = postBuilder(data.id);
+        if(data.imageUrl !== ""){
+            let postImg = addImg(data.imageUrl, data.id);
+            post.append(postImg);
+        }
+        if(data.hasCard){
+            //adding content to
+            let postName = addConHTag(data.name, "Name:", data.id);
+            let postType = addConHTag(data.type, "Type:", data.id);
+            let postCMC = addConHTag(data.cmc, "CMC:", data.id);
+            let postPower = addConHTag(data.power, "Power:", data.id);
+            let postToughness = addConHTag(data.toughness, "Toughness:", data.id);
+            let postLoyalty = addConHTag(data.loyalty, "Loyalty:", data.id);
+
+            post.append(postName);
+            post.append(postType);
+            post.append(postCMC);
+            post.append(postPower);
+            post.append(postToughness);
+            post.append(postLoyalty);
+        }
+        let postTxt = addConHTag(data.usrTxt, "User Posted:", data.id);
+        post.append(postTxt);
+
+        let commentCmp = commentCpnt(data.id); //create the comment component.
+        post.append(commentCmp);
+        $("#postBrd").prepend(post);
+    }
+    //same as prepend post but this time we're dealing with an array.
     function getAllPosts(){
         $.get("/api/allPosts")
             // on success, run this callback
@@ -142,7 +173,12 @@ $(document).ready(function () {
             });  
 
     }
-   
+    
+    function clearPostHldr(){
+        $("#postHldr").html("");
+        $("#postBx").val("");
+    }
+
     function addtopostcard(){
         $("#postHldr").html("");
         if(!(mtgCard.imageUrl===""))
@@ -193,8 +229,15 @@ $(document).ready(function () {
         }
         mtgCard.usrTxt = $("#postBx").val().trim();
         console.log("making post with object...")
-        $.post("/api/addPost", mtgCard, function(){ }); 
-        location.reload();
+        $.post("/api/addPost", mtgCard, function(){ 
+            
+        }).then((data) => {
+            //make and call prependPost();
+            console.log("line 191 mkpost:");
+            console.log(data);
+            prependPost(data);
+            clearPostHldr();
+        });
     });
 
     $("#addCard").on("click", function (e) {
