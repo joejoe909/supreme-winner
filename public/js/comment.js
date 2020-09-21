@@ -42,7 +42,7 @@ $.get("/api/comments", function(data) {
       
       row.append("<p>" + newComment.author + " comments: </p>");
       row.append("<p>" + newComment.body + "</p>");
-      row.append("<p>At " + moment(newComment.created_at).format("h:mma on dddd") + "</p>");
+      // row.append("<p>At " + moment(newComment.created_at).format("h:mma on dddd") + "</p>");
       
       $("#comment-area").prepend(row);
       
