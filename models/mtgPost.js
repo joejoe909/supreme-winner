@@ -1,6 +1,8 @@
 const db = require(".");
 const user = require("./user");
 
+
+
 module.exports = function (sequelize, DataTypes) {
     let mtgPosts = sequelize.define("mtgPosts", {         //table name
         hasCard:{
@@ -45,7 +47,7 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: true,
          
-        }
+        },
     });
 
     mtgPosts.associate = function (models) {
@@ -57,6 +59,5 @@ module.exports = function (sequelize, DataTypes) {
             // }
         });
     };
-
     return mtgPosts;
 }
