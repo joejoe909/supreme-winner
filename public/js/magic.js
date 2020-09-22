@@ -137,7 +137,7 @@ $(document).ready(function () {
                 postComment();
                 for(i = 0; i < data.length; i++){    
                     let post = postBuilder(data[i].id);
-                    commentPostId.push(data[i].id);
+                    // commentPostId.push(data[i].id);
                     if (data[i].imageUrl !== "") {
                        let postImg = addImg(data[i].imageUrl, data[i].id);
                        post.append(postImg);
@@ -206,8 +206,10 @@ $(document).ready(function () {
     
                     for (var i = 0; i < data.length; i++) {
                 let comRow = $("<div>");
-                comRow.append("<p>" + data[i].author + data[i].body + "</p>")
-                $("#comment-area" + postCommentId.lastIndexOf()).append(comRow)
+                comRow.addClass("comRow-list");
+                comRow.append("<p>" + data[i].author + " commented... </p>")
+                comRow.append("<p>" + data[i].body + "</p>")
+                $("#comment-area" + postComment.lastIndexOf()).append(comRow)
                     }
                 }
             })
