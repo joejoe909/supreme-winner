@@ -3,6 +3,7 @@ $(document).ready(function () {
     let hasCard = false;
     let mtgCard = Object.create(card);
     let mtgPosting = Object.create(card);
+    let postCommentId = [];
 
     //this builds a comment component
     function commentCpnt(id) {
@@ -33,7 +34,8 @@ $(document).ready(function () {
         col8.append(sbmtButton);
         //////////////////////
 
-        let commentArea = $("<div>").attr("id", "comment-area" + id);
+        let commentArea = $("<div>").attr("class", "container");
+        commentArea.attr("id", "comment-area" + id);
         let inrH2 = $("<h2> Comments <h2>");
         let inrCol8 = $("<div>").attr("class", "col-sm-8 col-sm-offset-2");
         let innerRow = $("<div>").attr("class", "row");
@@ -121,14 +123,21 @@ $(document).ready(function () {
         post.append(commentCmp);
         $("#postBrd").prepend(post);
     }
+
+    
+
+       
+    
     //same as prepend post but this time we're dealing with an array.
     function getAllPosts(){
         $.get("/api/allPosts")
             // on success, run this callback
             .then((data) => {
                 console.log(data)
+                postComment();
                 for(i = 0; i < data.length; i++){    
-                   let post = postBuilder(data[i].id);
+                    let post = postBuilder(data[i].id);
+                    commentPostId.push(data[i].id);
                     if (data[i].imageUrl !== "") {
                        let postImg = addImg(data[i].imageUrl, data[i].id);
                        post.append(postImg);
@@ -169,23 +178,41 @@ $(document).ready(function () {
                        body: $(this).siblings("textarea").val(),
                     //    mtgPostId: $(this).attr("id")
                    }
-                    $.post("/api/comments", comment)
-                    .then(function(data){
-                    
-                    })
-
-                
-                        
-                    
-                    
+                   $.post("/api/comments",comment)
+                   .then(function(data){
+                       console.log(data);
+                   })
+                   
+                   
                    console.log($(this).siblings("input").val())
                    console.log($(this).siblings("textarea").val())
                    alert("click")     
-                });
-            });  
+                   
+                })
+                
+            }); 
+            
+        }
+        
 
-    }
+
+        function postComment(){
+
+            $.get("/api/comments", function(data){
+                console.log(data)
+                console.log(postCommentId.lastIndexOf())
+                
+                if (data.length !== 0) {
     
+                    for (var i = 0; i < data.length; i++) {
+                let comRow = $("<div>");
+                comRow.append("<p>" + data[i].author + data[i].body + "</p>")
+                $("#comment-area" + postCommentId.lastIndexOf()).append(comRow)
+                    }
+                }
+            })
+        }
+        
     function clearPostHldr(){
         $("#postHldr").html("");
         $("#postBx").val("");
@@ -248,6 +275,7 @@ $(document).ready(function () {
             console.log("line 191 mkpost:");
             console.log(data);
             prependPost(data);
+            commentPostId.push(data.id);
             clearPostHldr();
         });
     });
