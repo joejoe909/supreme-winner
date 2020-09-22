@@ -23,3 +23,5 @@ Once logged in use:
 source schema.sql
 
 
+#Credits
+Thanks to Dakota, Jeremy and Linzy as they also contributed to this project.
