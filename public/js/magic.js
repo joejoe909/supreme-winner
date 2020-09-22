@@ -3,7 +3,7 @@ $(document).ready(function () {
     let hasCard = false;
     let mtgCard = Object.create(card);
     let mtgPosting = Object.create(card);
-    let postCommentId = [];
+    // let postCommentId = [];
 
     //this builds a comment component
     function commentCpnt(id) {
@@ -24,9 +24,12 @@ $(document).ready(function () {
         inptName.attr("placeholder", "Enter Your Name");
 
         let pName = $("<p> Name: </p>");
+        let poName = $("<p>"+ id +"</p>");
+        poName.attr("id", "postIdHere");
         let col8 = $("<div>").attr("class", "col-sm-8 col-sm-offset-2");
 
         col8.append(pName);
+        col8.append(poName);
         col8.append(inptName);
         col8.append(pComment);
         col8.append("<br>");
@@ -35,8 +38,10 @@ $(document).ready(function () {
         //////////////////////
 
         let commentArea = $("<div>").attr("class", "container");
-        commentArea.attr("id", "comment-area" + id);
+        commentArea.attr("id", "comment-area_" + id);
         let inrH2 = $("<h2> Comments <h2>");
+        let idInput = $("<div>").attr("class", "idInput");
+        idInput.attr("id", id)
         let inrCol8 = $("<div>").attr("class", "col-sm-8 col-sm-offset-2");
         let innerRow = $("<div>").attr("class", "row");
         innerRow.append(inrCol8);
@@ -137,7 +142,7 @@ $(document).ready(function () {
                 postComment();
                 for(i = 0; i < data.length; i++){    
                     let post = postBuilder(data[i].id);
-                    // commentPostId.push(data[i].id);
+                    // postCommentId.push(data.id);
                     if (data[i].imageUrl !== "") {
                        let postImg = addImg(data[i].imageUrl, data[i].id);
                        post.append(postImg);
@@ -168,48 +173,49 @@ $(document).ready(function () {
                     post.append(commentCmp);
                     $("#postBrd").prepend(post);
                 }
-                $(".comSub_").on("click", function(event) {
-                    event.preventDefault();
-                   let subBtn = $(this).attr("id");
-                //    let comment = "";
-                   $("." + subBtn).val();
-                    let comment = {
-                       author: $(this).siblings("input").val(),
-                       body: $(this).siblings("textarea").val(),
-                    //    mtgPostId: $(this).attr("id")
-                   }
-                   $.post("/api/comments",comment)
-                   .then(function(data){
-                       console.log(data);
-                   })
-                   
-                   
-                   console.log($(this).siblings("input").val())
-                   console.log($(this).siblings("textarea").val())
-                   alert("click")     
-                   
-                })
+                        $(".comSub_").on("click", function(event) {
+                            event.preventDefault();
+                           let subBtn = $(this).attr("id");
+                        //    let comment = "";
+                           $("." + subBtn).val();
+                            let comment = {
+                               author: $(this).siblings("input").val(),
+                               body: $(this).siblings("textarea").val(),
+                               mtgPostId: $(this).siblings("#postIdHere").text()
+                             
+                           }
+                           $.post("/api/comments",comment)
+                           .then(function(data){
+                               console.log(data);
+                           })
+                           
+                           
+                        //    console.log($(this).siblings("input").val())
+                        //    console.log($(this).siblings("textarea").val())
+                           console.log($("#postIdHere").text())
+                        //    alert("click")     
+                           window.location.reload();
+                        })
                 
             }); 
             
         }
         
 
-
         function postComment(){
 
             $.get("/api/comments", function(data){
                 console.log(data)
-                console.log(postCommentId.lastIndexOf())
-                
+                // console.log(postCommentId.lastIndexOf())
+                // let postID = data[i].mtgPostId
                 if (data.length !== 0) {
-    
+                    
                     for (var i = 0; i < data.length; i++) {
                 let comRow = $("<div>");
                 comRow.addClass("comRow-list");
                 comRow.append("<p>" + data[i].author + " commented... </p>")
                 comRow.append("<p>" + data[i].body + "</p>")
-                $("#comment-area" + postComment.lastIndexOf()).append(comRow)
+                $("#comment-area_" + data[i].mtgPostId).append(comRow)
                     }
                 }
             })
@@ -218,6 +224,7 @@ $(document).ready(function () {
     function clearPostHldr(){
         $("#postHldr").html("");
         $("#postBx").val("");
+        location.reload();
     }
 
     function addtopostcard(){
@@ -253,7 +260,8 @@ $(document).ready(function () {
                 mtgCard.toughness = data[0].toughness;
                 mtgCard.loyalty = data[0].loyalty              
                 console.log(mtgCard);
-                addtopostcard();  
+                addtopostcard(); 
+            
             });         
     };
 
@@ -277,7 +285,7 @@ $(document).ready(function () {
             console.log("line 191 mkpost:");
             console.log(data);
             prependPost(data);
-            commentPostId.push(data.id);
+            // postCommentId.push(data.id);
             clearPostHldr();
         });
     });
@@ -296,6 +304,8 @@ $(document).ready(function () {
 
     //get all posts once page is loaded.
     getAllPosts();
+
+    
 });
 
 let card = {

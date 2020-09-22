@@ -21,7 +21,7 @@ module.exports = function (sequelize, DataTypes) {
       },
       mtgPostId:{
           type: DataTypes.INTEGER,
-          defaultValue: 1,
+        //   defaultValue: 1,
           allowNull: false,
       }
     //   created_at: {

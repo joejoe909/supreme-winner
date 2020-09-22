@@ -45,3 +45,7 @@ main {
 aside{
   float: left;
 }
+
+#postIdHere{
+  display: none;
+}
